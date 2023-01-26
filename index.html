@@ -1,0 +1,115 @@
+<!-- Witaj. Jeśli widzisz ten komeentarz to znaczy, że zainteresowała Cię moja aplikacja -->
+<!-- Mam nadzieję, że zgadłeś z jakiego filmu pochodzi motyw -->
+<!-- Jeśli nie - wskazówka jest tutaj : https://youtu.be/sjoad6gcRzs -->
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dziękuję za spotkanie</title>
+  <meta name="description" content="Podziękowanie za spotkanie rekrutacyjne">
+  <meta name="author" content="Daniel Goławski">
+
+  <style>
+    @font-face {
+      font-family: Matrix;
+      src: url("rexlia.otf") format("opentype");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Matrix;
+      letter-spacing: 1px;
+      background: black;
+      padding: 10vw;
+      font-size: 2em;
+    }
+
+    p {
+      color: #00FF41;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <p id="text-paragraph"></p>
+
+
+  <script>
+
+    let text;
+    var speed = 50;
+    let i = 0;
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    window.onload = async () => {
+      let sentences = await getText();
+      sentences = sentences.map(sentence => sentence + '...');
+      await startTyping(sentences);
+      await delay(2000)
+      let questions = await getQuestions();
+      if (!questions.length) {
+        return;
+      }
+      document.getElementById('text-paragraph').innerHTML + '';
+      await typeWriter('Mam jeszcze kilka pytań nawiązujących do naszej rozmowy:');
+      displayQuestions(questions);
+    }
+
+    async function startTyping(sentences) {
+      for (let sentence of sentences) {
+        document.getElementById('text-paragraph').innerHTML = '';
+        i = 0;
+        await typeWriter(sentence);
+        await delay(2000);
+      }
+    }
+
+    async function typeWriter(txt) {
+      if (!txt) {
+        return;
+      }
+      let speed;
+      for (let [idx, letter] of txt.split('').entries()) {
+        document.getElementById('text-paragraph').innerHTML += letter;
+        if (idx % 10 === 0) {
+          speed = (Math.floor(Math.random() * 7) + 5) * 10;
+        }
+        await delay(speed);
+      }
+    }
+
+    async function getText() {
+      let json = await fetch('./content.json');
+      json = await json.json();
+      let text = json.text;
+      let cnt = 0;
+      const keysToReplace = text.match(/(?<=\[).+?(?=\])/g);
+      text = text.replace(/\[.+?\]/g, () => json[keysToReplace[cnt++]]);
+      return text.split('.');
+    }
+
+    async function getQuestions() {
+      let json = await fetch('./content.json');
+      json = await json.json();
+      console.log(json.questions)
+      return json.questions;
+    }
+
+    async function displayQuestions(questions) {
+      for (let question of questions) {
+        await delay(2000)
+        document.querySelector('body').innerHTML += `<p>- ${question}?</p>`
+      }
+    }
+  </script>
+</body>
+</html>

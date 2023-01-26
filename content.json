@@ -1,0 +1,16 @@
+{
+  "manager": "Jakub",
+  "developer": "Marek",
+  "company": "Nordea",
+  "position": "Frontend Developer",
+  "text": "[manager], [developer] chciałbym Wam podziękować za nasze spotkanie. Cieszę się, że mogliśmy się poznać i porozmawiać, szczególnie, że [company] jest firmą z mojej listy tych, dla których chciałbym pracować. Nasza rozmowa, atmosfera i tym samym firma zrobiła na mnie bardzo pozytywne wrażenie. Stąd uważam, że mogę tu pasować i chciałbym dołożyć jakąś cegiełkę w projekt jako [position]. Mam też nadzieję, że przedstawiłem swoją osobę w zadowalający sposób i wypadłem dobrze. [developer], dziękuję za ciekawe pytania, szczególnie część z poprawą mojego CV. Mam nadzieję, że będziemy mieć okazję współpracować teraz lub w przyszłości. Jeszcze raz dziękuję za ciekawe i profesjonalne spotkanie",
+  "questions": [
+    "Na jakie kompetencje miękkie i twarde stawia zespół najbardziej?",
+    "Jakie zadania będą czekać na początku",
+    "Czy jest ustalona jakaś ścieżka kariery w firmie",
+    "Jak wygląda proces wdrożenia",
+    "Na jakim poziomie umiejętności powinienem być po okresie próbnym",
+    "W jakim stopiu developerzy są angażowani w sprawy biznesowe",
+    "Czy mogę liczyć na maila z feedbackiem pod koniec rekrutacji"
+  ]
+}
